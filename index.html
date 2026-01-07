@@ -3,91 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minimalist Links</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-    
+    <title>Giao diện Động</title>
     <style>
+        /* 1. NỀN CHUYỂN ĐỘNG (ANIMATED GRADIENT) */
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #ffffff; /* Nền trắng sạch sẽ */
-            color: #1a1a1a;
+            margin: 0;
+            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            overflow: hidden;
+            color: white;
         }
 
-        .container {
-            width: 90%;
-            max-width: 400px;
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 2. HIỆU ỨNG CHUỘT (CURSOR TRAIL) */
+        #cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            pointer-events: none;
+            transition: transform 0.1s ease;
+            z-index: 999;
+            box-shadow: 0 0 20px white;
+        }
+
+        /* 3. NỘI DUNG CHÍNH */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 40px;
+            border-radius: 30px;
             text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
         }
 
-        h1 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-        }
+        h1 { font-size: 3rem; margin: 0; filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
+        p { opacity: 0.8; font-size: 1.1rem; }
 
-        p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 40px;
-        }
-
-        .links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .link-item {
-            display: block;
-            padding: 16px;
+        .btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: white;
+            color: #333;
             text-decoration: none;
-            color: #1a1a1a;
-            background: #f1f1f1; /* Màu nút xám nhạt */
-            border-radius: 12px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-            border: 1px solid transparent;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
-        /* Hiệu ứng khi di chuột qua nút */
-        .link-item:hover {
-            background: #000; /* Đổi sang nền đen */
-            color: #fff;     /* Chữ trắng */
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            margin-top: 50px;
-            font-size: 13px;
-            color: #999;
+        .btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 20px white;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>@TenCuaBan</h1>
-        
-        <p>Chào mừng bạn đến với trang cá nhân của tôi.</p>
+    <div id="cursor"></div>
 
-        <div class="links">
-            <a href="https://facebook.com/" class="link-item">Facebook</a>
-            <a href="https://instagram.com/" class="link-item">Instagram</a>
-            <a href="https://github.com/zerefiel" class="link-item">GitHub Dự án</a>
-            <a href="mailto:email@gmail.com" class="link-item">Liên hệ Email</a>
-        </div>
-
-        <div class="footer">
-            2026 • Cập nhật lần cuối
-        </div>
+    <div class="glass-card">
+        <h1 id="time">00:00:00</h1>
+        <p>Chào mừng bạn đến với không gian số</p>
+        <a href="#" class="btn">Khám phá ngay</a>
     </div>
 
+    <script>
+        // Hiệu ứng chuột đuổi theo
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+        });
+
+        // Đồng hồ thời gian thực
+        function updateClock() {
+            const now = new Date();
+            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
+                            now.getMinutes().toString().padStart(2, '0') + ":" + 
+                            now.getSeconds().toString().padStart(2, '0');
+            document.getElementById('time').innerText = timeStr;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
 </body>
 </html>
-
