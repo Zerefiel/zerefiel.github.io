@@ -2,15 +2,154 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Website của tôi</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Cá Nhân</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        body { font-family: sans-serif; text-align: center; margin-top: 50px; }
-        h1 { color: #2c3e50; }
-        p { color: #7f8c8d; }
+        /* 1. CẤU HÌNH CHUNG */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Màu nền Gradient tím xanh */
+            height: 100vh;
+            display: flex;
+            justify_content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        /* 2. KHUNG THẺ PROFILE (CARD) */
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            width: 350px;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px); /* Hiệu ứng bay lên nhẹ khi di chuột */
+        }
+
+        /* 3. ẢNH ĐẠI DIỆN */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #764ba2;
+            margin-bottom: 20px;
+        }
+
+        /* 4. TÊN VÀ MÔ TẢ */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        p.title {
+            color: #764ba2;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p.desc {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        /* 5. CÁC NÚT BẤM (BUTTONS) */
+        .social-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .btn {
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        /* Màu sắc từng nút */
+        .btn-fb { background: #1877f2; color: white; }
+        .btn-ins { background: linear-gradient(45deg, #f09433, #bc1888); color: white; }
+        .btn-tiktok { background: #000; color: white; }
+        .btn-email { background: #fff; color: #333; border: 1px solid #ddd; }
+
+        /* Hiệu ứng khi di chuột vào nút */
+        .btn:hover {
+            opacity: 0.9;
+            transform: scale(1.02);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* 6. Footer nhỏ */
+        .footer {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #aaa;
+        }
     </style>
 </head>
 <body>
-    <h1>Xin chào Thế Giới!</h1>
-    <p>Đây là website đầu tiên tôi tạo trên GitHub Pages.</p>
+
+    <div class="card">
+        <img src="https://i.imgur.com/Kz8j8bZ.png" alt="Avatar" class="avatar">
+        
+        <h1>Nguyễn Văn A</h1>
+        
+        <p class="title">Content Creator</p>
+        
+        <p class="desc">
+            Xin chào! Mình thích chụp ảnh, viết code và đi du lịch. 
+            Kết nối với mình qua các link bên dưới nhé.
+        </p>
+
+        <div class="social-links">
+            <a href="https://facebook.com" class="btn btn-fb" target="_blank">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+
+            <a href="https://instagram.com" class="btn btn-ins" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+
+            <a href="https://tiktok.com" class="btn btn-tiktok" target="_blank">
+                <i class="fa-brands fa-tiktok"></i> TikTok
+            </a>
+            
+            <a href="mailto:emailcuaban@gmail.com" class="btn btn-email">
+                <i class="fas fa-envelope"></i> Gửi Email
+            </a>
+        </div>
+
+        <div class="footer">
+            © 2024 Thiết kế bởi Tôi
+        </div>
+    </div>
+
 </body>
 </html>
