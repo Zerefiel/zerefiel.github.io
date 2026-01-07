@@ -4,58 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Premium Portfolio | Creative Developer</title>
+    
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
     <div id="particles-js"></div>
+    <div class="custom-cursor"></div>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">PRO<span>FILE</span></div>
+            <ul class="nav-links">
+                <li><a href="#home">Trang chủ</a></li>
+                <li><a href="#about">Về tôi</a></li>
+                <li><a href="#projects">Dự án</a></li>
+                <li><a href="#contact">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
 
     <main class="main-wrapper">
-        <section class="hero" data-tilt data-tilt-max="5" data-tilt-speed="400">
-            <div class="glass-container">
-                <div class="profile-main">
-                    <div class="avatar-box">
-                        <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=Pro&background=random'">
-                        <div class="pulse-ring"></div>
-                    </div>
-                    
-                    <h2 class="pre-title">HELLO, I AM</h2>
-                    <h1 class="main-title">TEN CUA <span class="gradient-text">BAN.</span></h1>
-                    <div class="typewriter">
-                        <span class="type-text"></span>
-                    </div>
-
-                    <div class="skill-tags">
-                        <span><i class="fab fa-react"></i> React</span>
-                        <span><i class="fab fa-js"></i> UI/UX</span>
-                        <span><i class="fas fa-code"></i> AI Dev</span>
-                    </div>
+        <section id="home" class="hero-section" data-aos="zoom-in" id="tilt-card">
+            <div class="hero-glass">
+                <div class="avatar-box">
+                    <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=User&background=00f2ff&color=fff&size=150'">
+                    <div class="pulse-ring"></div>
+                </div>
+                <p class="pre-title">DESIGNER & DEVELOPER</p>
+                <h1 class="main-title">TEN CUA <span class="gradient-text">BAN.</span></h1>
+                <div class="typewriter">
+                    <span id="type-text"></span><span class="cursor">|</span>
                 </div>
             </div>
         </section>
 
-        <section class="content-grid">
-            <div class="card mini-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-fire"></i>
-                <h3>15+</h3>
-                <p>Projects Done</p>
+        <section id="about" class="content-grid">
+            <div class="mini-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-code"></i>
+                <h3>Kỹ năng</h3>
+                <p>HTML, CSS, JS, AI Tools</p>
             </div>
-            <div class="card mini-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-coffee"></i>
-                <h3>500+</h3>
-                <p>Coffee Cups</p>
+            <div class="mini-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-rocket"></i>
+                <h3>Tốc độ</h3>
+                <p>Tối ưu hóa hiệu năng cực cao</p>
+            </div>
+            <div class="mini-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-heart"></i>
+                <h3>Đam mê</h3>
+                <p>Luôn sáng tạo mỗi ngày</p>
             </div>
         </section>
-
-        <footer class="social-bar" data-aos="zoom-in">
-            <a href="#"><i class="fab fa-facebook"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fas fa-paper-plane"></i></a>
-        </footer>
     </main>
+
+    <footer id="contact" class="social-footer" data-aos="fade-up">
+        <div class="footer-links">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fas fa-paper-plane"></i></a>
+        </div>
+        <p>© 2026 Developed by You.</p>
+    </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
