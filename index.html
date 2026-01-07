@@ -3,42 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Digital Space</title>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Premium Portfolio | Creative Developer</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="particles-js"></div>
 
-    <div class="container">
-        <div class="glass-card">
-            <div class="profile-section">
-                <div class="avatar-wrapper">
-                    <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=User&background=00d2ff&color=fff'">
-                </div>
-                <h1 class="name">Tên Của Bạn</h1>
-                <p class="title">Digital Creator & Web Artisan</p>
-                
-                <div class="badges">
-                    <span class="badge">UI/UX</span>
-                    <span class="badge">AI Tech</span>
-                    <span class="badge">Freelance</span>
-                </div>
+    <main class="main-wrapper">
+        <section class="hero" data-tilt data-tilt-max="5" data-tilt-speed="400">
+            <div class="glass-container">
+                <div class="profile-main">
+                    <div class="avatar-box">
+                        <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=Pro&background=random'">
+                        <div class="pulse-ring"></div>
+                    </div>
+                    
+                    <h2 class="pre-title">HELLO, I AM</h2>
+                    <h1 class="main-title">TEN CUA <span class="gradient-text">BAN.</span></h1>
+                    <div class="typewriter">
+                        <span class="type-text"></span>
+                    </div>
 
-                <div class="social-links">
-                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-github"></i></a>
-                    <a href="#" class="social-icon"><i class="fas fa-envelope"></i></a>
+                    <div class="skill-tags">
+                        <span><i class="fab fa-react"></i> React</span>
+                        <span><i class="fab fa-js"></i> UI/UX</span>
+                        <span><i class="fas fa-code"></i> AI Dev</span>
+                    </div>
                 </div>
-                
-                <button class="btn-contact">Kết nối với tôi</button>
             </div>
-        </div>
-    </div>
+        </section>
+
+        <section class="content-grid">
+            <div class="card mini-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-fire"></i>
+                <h3>15+</h3>
+                <p>Projects Done</p>
+            </div>
+            <div class="card mini-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-coffee"></i>
+                <h3>500+</h3>
+                <p>Coffee Cups</p>
+            </div>
+        </section>
+
+        <footer class="social-bar" data-aos="zoom-in">
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fas fa-paper-plane"></i></a>
+        </footer>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
