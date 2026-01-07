@@ -3,103 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bố Thắng Đây</title>
+    <title>Professional Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
-        /* 1. NỀN CHUYỂN ĐỘNG (ANIMATED GRADIENT) */
+        /* 1. NỀN GRADIENT CHUYỂN ĐỘNG */
         body {
             margin: 0;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-family: 'Segoe UI', sans-serif;
-            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(-45deg, #0f2027, #203a43, #2c5364);
             background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-            overflow: hidden;
+            animation: gradientBG 15s ease infinite;
             color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        @keyframes gradient {
+        @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        /* 2. HIỆU ỨNG CHUỘT (CURSOR TRAIL) */
-        #cursor {
-            position: fixed;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.5);
-            pointer-events: none;
-            transition: transform 0.1s ease;
-            z-index: 999;
-            box-shadow: 0 0 20px white;
-        }
-
-        /* 3. NỘI DUNG CHÍNH */
-        .glass-card {
+        /* 2. MENU ĐIỀU HƯỚNG */
+        nav {
+            position: sticky;
+            top: 20px;
+            z-index: 1000;
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px); /* Hiệu ứng kính mờ */
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-        }
-
-        h1 { font-size: 3rem; margin: 0; filter: drop-shadow(0 0 10px rgba(255,255,255,0.5)); }
-        p { opacity: 0.8; font-size: 1.1rem; }
-
-        .btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 30px;
-            background: white;
-            color: #333;
-            text-decoration: none;
+            backdrop-filter: blur(15px);
+            padding: 10px 30px;
             border-radius: 50px;
-            font-weight: bold;
-            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
         }
 
-        .btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 20px white;
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+            opacity: 0.7;
+        }
+
+        nav a:hover { opacity: 1; text-shadow: 0 0 10px white; }
+
+        /* 3. CONTAINER CHÍNH */
+        .container {
+            max-width: 800px;
+            width: 90%;
+            margin: 60px auto;
+        }
+
+        /* 4. GLASS CARD (PROFILE) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        .profile-name { font-size: 32px; font-weight: 600; margin-bottom: 5px; }
+        .profile-tag { color: #00d2ff; font-weight: 400; letter-spacing: 2px; text-transform: uppercase; font-size: 12px; margin-bottom: 20px; display: block; }
+
+        /* 5. MENU CHỨC NĂNG (LINKS) */
+        .grid-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .grid-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .grid-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            border-color: #00d2ff;
+        }
+
+        .grid-item i { font-size: 24px; color: #00d2ff; }
+
+        /* HIỆU ỨNG CHUỘT NHẸ */
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(0, 210, 255, 0.1) 0%, rgba(0,0,0,0) 70%);
+            pointer-events: none;
+            z-index: -1;
+            transform: translate(-50%, -50%);
         }
     </style>
 </head>
 <body>
 
-    <div id="cursor"></div>
+    <div id="cursor-glow"></div>
 
-    <div class="glass-card">
-        <h1 id="time">00:00:00</h1>
-        <p>Chào mừng bạn đến với không gian số</p>
-        <a href="#" class="btn">Khám phá ngay</a>
+    <nav>
+        <a href="#home">Trang chủ</a>
+        <a href="#projects">Dự án</a>
+        <a href="#contact">Liên hệ</a>
+        <a href="#about">Về tôi</a>
+    </nav>
+
+    <div class="container">
+        <div class="glass-card" id="home">
+            <span class="profile-tag">Xin chào, tôi là</span>
+            <h1 class="profile-name">Tên Của Bạn</h1>
+            <p style="opacity: 0.7; line-height: 1.6;">
+                Một nhà sáng tạo nội dung số đam mê thiết kế và công nghệ. 
+                Chào mừng bạn đã ghé thăm không gian nhỏ của tôi trên internet.
+            </p>
+
+            <div class="grid-links">
+                <a href="#" class="grid-item">
+                    <i class="fab fa-facebook"></i>
+                    <span>Facebook</span>
+                </a>
+                <a href="#" class="grid-item">
+                    <i class="fab fa-instagram"></i>
+                    <span>Instagram</span>
+                </a>
+                <a href="#" class="grid-item">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+                <a href="#" class="grid-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>Email</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="glass-card" id="projects" style="text-align: left;">
+            <h3>Dự án tiêu biểu</h3>
+            <p style="font-size: 14px; opacity: 0.8;">• Web cá nhân trên GitHub Pages (2026)</p>
+            <p style="font-size: 14px; opacity: 0.8;">• Portfolio thiết kế tối giản</p>
+        </div>
     </div>
 
     <script>
-        // Hiệu ứng chuột đuổi theo
-        const cursor = document.getElementById('cursor');
+        // Hiệu ứng ánh sáng đuổi theo chuột (nhẹ nhàng hơn)
+        const glow = document.getElementById('cursor-glow');
         document.addEventListener('mousemove', (e) => {
-            cursor.style.left = e.clientX - 10 + 'px';
-            cursor.style.top = e.clientY - 10 + 'px';
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
         });
-
-        // Đồng hồ thời gian thực
-        function updateClock() {
-            const now = new Date();
-            const timeStr = now.getHours().toString().padStart(2, '0') + ":" + 
-                            now.getMinutes().toString().padStart(2, '0') + ":" + 
-                            now.getSeconds().toString().padStart(2, '0');
-            document.getElementById('time').innerText = timeStr;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
     </script>
+
 </body>
 </html>
-
