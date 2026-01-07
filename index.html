@@ -176,3 +176,30 @@
 
 </body>
 </html>
+<div class="glass-card" id="ai-chat">
+    <h3><i class="fas fa-robot"></i> Trợ lý AI</h3>
+    <div id="chat-box" style="height: 200px; overflow-y: auto; background: rgba(0,0,0,0.2); border-radius: 10px; padding: 10px; margin-bottom: 10px; text-align: left; font-size: 14px;">
+        <p><i>Hệ thống: Chào bạn! Tôi có thể giúp gì cho bạn?</i></p>
+    </div>
+    <input type="text" id="user-input" placeholder="Hỏi tôi bất cứ điều gì..." style="width: 70%; padding: 10px; border-radius: 20px; border: none; outline: none;">
+    <button onclick="askAI()" style="padding: 10px 15px; border-radius: 20px; border: none; background: #00d2ff; color: white; cursor: pointer;">Gửi</button>
+</div>
+
+<script>
+    async function askAI() {
+        const input = document.getElementById('user-input');
+        const chatBox = document.getElementById('chat-box');
+        if(!input.value) return;
+
+        chatBox.innerHTML += `<p><b>Bạn:</b> ${input.value}</p>`;
+        const userMsg = input.value;
+        input.value = "";
+
+        // Đây là nơi bạn sẽ gọi API của Gemini hoặc OpenAI
+        // Hiện tại tôi sẽ giả lập câu trả lời của AI:
+        setTimeout(() => {
+            chatBox.innerHTML += `<p style="color: #00d2ff;"><b>AI:</b> Chức năng AI đang được kết nối... Bạn cần chèn API Key vào mã nguồn để tôi có thể trả lời thật sự!</p>`;
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }, 1000);
+    }
+</script>
