@@ -1,94 +1,28 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Portfolio | MOBA Developer</title>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-    <div id="particles-js"></div>
-    <div class="custom-cursor"></div>
-
-    <header>
-        <nav class="navbar">
-            <div class="logo">PRO<span>FILE</span></div>
-            <ul class="nav-links">
-                <li><a href="#home">Trang chủ</a></li>
-                <li><a href="#projects">Dự án</a></li>
-                <li><a href="#about">Về tôi</a></li>
-                <li><a href="#contact">Liên hệ</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main class="main-wrapper">
-        <section id="home" class="hero-section" data-aos="zoom-in">
-            <div class="hero-glass">
-                <div class="avatar-box">
-                    <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=User&background=00f2ff&color=fff&size=150'">
-                    <div class="pulse-ring"></div>
-                </div>
-                <p class="pre-title">DESIGNER & DEVELOPER</p>
-                <h1 class="main-title">TEN CUA <span class="gradient-text">BAN.</span></h1>
-                <div class="typewriter">
-                    <span id="type-text"></span><span class="cursor">|</span>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="game-container" data-aos="fade-up">
-            <h2 class="section-title">MINI GAME: <span class="gradient-text">SUMMONER'S RIFT</span></h2>
-            <div class="game-wrapper">
-                <canvas id="mobaCanvas"></canvas>
-                <div class="game-ui">
-                    <div class="skill-bar">
-                        <div class="skill" id="skill-Q"><span>Q</span></div>
-                        <div class="skill" id="skill-W"><span>W</span></div>
-                        <div class="skill" id="skill-E"><span>E</span></div>
-                        <div class="skill" id="skill-R"><span>R</span></div>
-                    </div>
-                    <div class="instruction"><b>Click chuột phải</b> để di chuyển | Phím <b>Q,W,E,R</b> để tung chiêu</div>
-                </div>
-            </div>
-        </section>
-
-        <section id="about" class="content-grid">
-            <div class="mini-card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fas fa-code"></i>
-                <h3>Kỹ năng</h3>
-                <p>HTML, CSS, JS, AI Tools</p>
-            </div>
-            <div class="mini-card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fas fa-rocket"></i>
-                <h3>Tốc độ</h3>
-                <p>Tối ưu hóa hiệu năng cực cao</p>
-            </div>
-            <div class="mini-card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fas fa-heart"></i>
-                <h3>Đam mê</h3>
-                <p>Luôn sáng tạo mỗi ngày</p>
-            </div>
-        </section>
-    </main>
-
-    <footer id="contact" class="social-footer" data-aos="fade-up">
-        <div class="footer-links">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-github"></i></a>
-            <a href="#"><i class="fas fa-paper-plane"></i></a>
+<section id="projects" class="content-grid">
+    <div class="mini-card project-card" onclick="openGame()" data-aos="fade-up">
+        <div class="project-img">
+            <i class="fas fa-gamepad"></i>
         </div>
-        <p>© 2026 Developed by You.</p>
-    </footer>
+        <h3>MOBA Arena</h3>
+        <p>Game hành động 2D phong cách Liên Minh. Click để chơi!</p>
+    </div>
+</section>
 
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
-    <script src="script.js"></script>
-</body>
-</html>
+<div id="gameModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="close-game" onclick="closeGame()">&times;</button>
+        <h2 class="section-title">SUMMONER'S <span class="gradient-text">RIFT</span></h2>
+        <div class="game-wrapper">
+            <canvas id="mobaCanvas"></canvas>
+            <div class="game-ui">
+                <div class="skill-bar">
+                    <div class="skill" id="skill-Q"><span>Q</span></div>
+                    <div class="skill" id="skill-W"><span>W</span></div>
+                    <div class="skill" id="skill-E"><span>E</span></div>
+                    <div class="skill" id="skill-R"><span>R</span></div>
+                </div>
+                <div class="instruction"><b>Chuột phải</b>: Di chuyển | <b>Q,W,E,R</b>: Kỹ năng</div>
+            </div>
+        </div>
+    </div>
+</div>
