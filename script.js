@@ -1,30 +1,79 @@
-/* Project Card */
-.project-card { cursor: pointer; position: relative; overflow: hidden; }
-.project-img { height: 100px; display: flex; align-items: center; justify-content: center; font-size: 50px; color: var(--accent); }
-
-/* Modal Overlay */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0, 0, 0, 0.95);
-    z-index: 10001; display: none; /* Ẩn mặc định */
-    align-items: center; justify-content: center;
-    backdrop-filter: blur(10px);
+// Hàm điều khiển Modal Game
+function openGame() {
+    document.getElementById('gameModal').style.display = 'flex';
+    // Khởi tạo lại loop game nếu cần
+    requestAnimationFrame(gameLoop);
 }
 
-.modal-content {
-    width: 95%; max-width: 1000px;
-    background: #080810; padding: 40px;
-    border-radius: 30px; border: 1px solid var(--border);
-    position: relative; text-align: center;
+function closeGame() {
+    document.getElementById('gameModal').style.display = 'none';
 }
 
-.close-game {
-    position: absolute; top: 20px; right: 30px;
-    background: none; border: none; color: white;
-    font-size: 40px; cursor: pointer; transition: 0.3s;
-}
-.close-game:hover { color: var(--accent); transform: rotate(90deg); }
+// Logic MOBA GAME (Giữ nguyên phần trước nhưng bọc trong loop)
+const canvas = document.getElementById('mobaCanvas');
+const ctx = canvas.getContext('2d');
+canvas.width = 1000; canvas.height = 500;
 
-/* Game Wrapper Fix */
-.game-wrapper { margin-top: 20px; border: 1px solid var(--accent); border-radius: 15px; overflow: hidden; background: #000; }
-#mobaCanvas { width: 100%; height: 500px; cursor: crosshair !important; }
+let player = { x: 500, y: 250, tx: 500, ty: 250, speed: 4, size: 15 };
+let projectiles = [];
+let minions = [];
+
+canvas.oncontextmenu = (e) => e.preventDefault();
+
+canvas.addEventListener('mousedown', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    if (e.button === 2) { 
+        player.tx = (e.clientX - rect.left) * (canvas.width / rect.width);
+        player.ty = (e.clientY - rect.top) * (canvas.height / rect.height);
+    }
+});
+
+// Xử lý phím kỹ năng
+window.addEventListener('keydown', (e) => {
+    if (document.getElementById('gameModal').style.display !== 'flex') return;
+    
+    const key = e.key.toUpperCase();
+    if (['Q', 'W', 'E', 'R'].includes(key)) {
+        const el = document.getElementById(`skill-${key}`);
+        el.classList.add('active');
+        setTimeout(() => el.classList.remove('active'), 150);
+
+        // Bắn về hướng chuột hiện tại
+        projectiles.push({
+            x: player.x, y: player.y,
+            vx: (player.tx - player.x) / 15,
+            vy: (player.ty - player.y) / 15,
+            size: key === 'R' ? 15 : 7,
+            color: key === 'R' ? '#7000ff' : '#00f2ff'
+        });
+    }
+});
+
+function gameLoop() {
+    if (document.getElementById('gameModal').style.display !== 'flex') return;
+
+    ctx.fillStyle = 'rgba(8, 8, 16, 0.4)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // Di chuyển nhân vật
+    let dx = player.tx - player.x, dy = player.ty - player.y;
+    let dist = Math.sqrt(dx*dx + dy*dy);
+    if (dist > 5) {
+        player.x += (dx/dist) * player.speed;
+        player.y += (dy/dist) * player.speed;
+    }
+
+    // Vẽ lính và đạn
+    ctx.shadowBlur = 10;
+    projectiles.forEach((p, i) => {
+        p.x += p.vx; p.y += p.vy;
+        ctx.fillStyle = p.color;
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
+    });
+
+    // Vẽ người chơi
+    ctx.fillStyle = '#00f2ff';
+    ctx.beginPath(); ctx.arc(player.x, player.y, player.size, 0, Math.PI*2); ctx.fill();
+
+    requestAnimationFrame(gameLoop);
+}
