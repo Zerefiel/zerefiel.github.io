@@ -1,79 +1,53 @@
-// Hàm điều khiển Modal Game
-function openGame() {
-    document.getElementById('gameModal').style.display = 'flex';
-    // Khởi tạo lại loop game nếu cần
-    requestAnimationFrame(gameLoop);
-}
+// 1. Initialize Reveal (AOS)
+AOS.init({ duration: 1000, once: true });
 
-function closeGame() {
-    document.getElementById('gameModal').style.display = 'none';
-}
-
-// Logic MOBA GAME (Giữ nguyên phần trước nhưng bọc trong loop)
-const canvas = document.getElementById('mobaCanvas');
-const ctx = canvas.getContext('2d');
-canvas.width = 1000; canvas.height = 500;
-
-let player = { x: 500, y: 250, tx: 500, ty: 250, speed: 4, size: 15 };
-let projectiles = [];
-let minions = [];
-
-canvas.oncontextmenu = (e) => e.preventDefault();
-
-canvas.addEventListener('mousedown', (e) => {
-    const rect = canvas.getBoundingClientRect();
-    if (e.button === 2) { 
-        player.tx = (e.clientX - rect.left) * (canvas.width / rect.width);
-        player.ty = (e.clientY - rect.top) * (canvas.height / rect.height);
-    }
+// 2. Custom Cursor Move
+const cursor = document.querySelector(".custom-cursor");
+document.addEventListener("mousemove", (e) => {
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
 });
 
-// Xử lý phím kỹ năng
-window.addEventListener('keydown', (e) => {
-    if (document.getElementById('gameModal').style.display !== 'flex') return;
-    
-    const key = e.key.toUpperCase();
-    if (['Q', 'W', 'E', 'R'].includes(key)) {
-        const el = document.getElementById(`skill-${key}`);
-        el.classList.add('active');
-        setTimeout(() => el.classList.remove('active'), 150);
+// 3. Typewriter Animation
+const messages = ["Creative Web Developer", "UI/UX Designer", "AI Specialist"];
+let msgIndex = 0;
+let charIndex = 0;
+const speed = 100;
+const typeBox = document.getElementById("type-text");
 
-        // Bắn về hướng chuột hiện tại
-        projectiles.push({
-            x: player.x, y: player.y,
-            vx: (player.tx - player.x) / 15,
-            vy: (player.ty - player.y) / 15,
-            size: key === 'R' ? 15 : 7,
-            color: key === 'R' ? '#7000ff' : '#00f2ff'
-        });
+function type() {
+    if (charIndex < messages[msgIndex].length) {
+        typeBox.textContent += messages[msgIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(type, speed);
+    } else {
+        setTimeout(erase, 2000);
+    }
+}
+
+function erase() {
+    if (charIndex > 0) {
+        typeBox.textContent = messages[msgIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(erase, 50);
+    } else {
+        msgIndex = (msgIndex + 1) % messages.length;
+        setTimeout(type, 500);
+    }
+}
+window.onload = type;
+
+// 4. Particles.js Configuration
+particlesJS("particles-js", {
+    "particles": {
+        "number": { "value": 40 },
+        "color": { "value": "#00f2ff" },
+        "opacity": { "value": 0.2 },
+        "size": { "value": 2, "random": true },
+        "line_linked": { "enable": true, "distance": 150, "color": "#00f2ff", "opacity": 0.1, "width": 1 },
+        "move": { "enable": true, "speed": 1.5 }
+    },
+    "interactivity": {
+        "events": { "onhover": { "enable": true, "mode": "grab" } }
     }
 });
-
-function gameLoop() {
-    if (document.getElementById('gameModal').style.display !== 'flex') return;
-
-    ctx.fillStyle = 'rgba(8, 8, 16, 0.4)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Di chuyển nhân vật
-    let dx = player.tx - player.x, dy = player.ty - player.y;
-    let dist = Math.sqrt(dx*dx + dy*dy);
-    if (dist > 5) {
-        player.x += (dx/dist) * player.speed;
-        player.y += (dy/dist) * player.speed;
-    }
-
-    // Vẽ lính và đạn
-    ctx.shadowBlur = 10;
-    projectiles.forEach((p, i) => {
-        p.x += p.vx; p.y += p.vy;
-        ctx.fillStyle = p.color;
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
-    });
-
-    // Vẽ người chơi
-    ctx.fillStyle = '#00f2ff';
-    ctx.beginPath(); ctx.arc(player.x, player.y, player.size, 0, Math.PI*2); ctx.fill();
-
-    requestAnimationFrame(gameLoop);
-}
