@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Portfolio | Creative Developer</title>
+    <title>Premium Portfolio | MOBA Developer</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Plus+Jakarta+Sans:wght@300;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -20,15 +20,15 @@
             <div class="logo">PRO<span>FILE</span></div>
             <ul class="nav-links">
                 <li><a href="#home">Trang chủ</a></li>
-                <li><a href="#about">Về tôi</a></li>
                 <li><a href="#projects">Dự án</a></li>
+                <li><a href="#about">Về tôi</a></li>
                 <li><a href="#contact">Liên hệ</a></li>
             </ul>
         </nav>
     </header>
 
     <main class="main-wrapper">
-        <section id="home" class="hero-section" data-aos="zoom-in" id="tilt-card">
+        <section id="home" class="hero-section" data-aos="zoom-in">
             <div class="hero-glass">
                 <div class="avatar-box">
                     <img src="assets/avatar.jpg" alt="Profile" onerror="this.src='https://ui-avatars.com/api/?name=User&background=00f2ff&color=fff&size=150'">
@@ -38,6 +38,22 @@
                 <h1 class="main-title">TEN CUA <span class="gradient-text">BAN.</span></h1>
                 <div class="typewriter">
                     <span id="type-text"></span><span class="cursor">|</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="game-container" data-aos="fade-up">
+            <h2 class="section-title">MINI GAME: <span class="gradient-text">SUMMONER'S RIFT</span></h2>
+            <div class="game-wrapper">
+                <canvas id="mobaCanvas"></canvas>
+                <div class="game-ui">
+                    <div class="skill-bar">
+                        <div class="skill" id="skill-Q"><span>Q</span></div>
+                        <div class="skill" id="skill-W"><span>W</span></div>
+                        <div class="skill" id="skill-E"><span>E</span></div>
+                        <div class="skill" id="skill-R"><span>R</span></div>
+                    </div>
+                    <div class="instruction"><b>Click chuột phải</b> để di chuyển | Phím <b>Q,W,E,R</b> để tung chiêu</div>
                 </div>
             </div>
         </section>
@@ -72,7 +88,6 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="script.js"></script>
 </body>
